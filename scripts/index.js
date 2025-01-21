@@ -5,9 +5,13 @@ const cardTemplate = document.querySelector('#card-template').content;
 function createCard(name,link) {
     const cardElement = cardTemplate.querySelector('.places__item').cloneNode(true);
 
+// сслыка на изображение
+    const cardImage = cardElement.querySelector('.card__image');
+
  // заполним данные
     cardElement.querySelector('.card__title').textContent = name;
-    cardElement.querySelector('.card__image').setAttribute('src', link);
+    cardImage.setAttribute('src', link);
+    cardImage.setAttribute('alt', name);
 
 // обработчик клика по корзинке удаления
     const buttonDelete = cardElement.querySelector('.card__delete-button');
