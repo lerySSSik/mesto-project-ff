@@ -1,4 +1,5 @@
 // @todo: Темплейт карточки
+const getGalleryContainer = () => document.querySelector('.places__list');
 const cardTemplate = document.querySelector('#card-template').content;
 
 // @todo: Функция создания карточки
@@ -29,8 +30,8 @@ function handDeleteCard(event) {
 // @todo: Вывести карточки на страницу
 
   function renderCard(cardElement) {
-    const container = document.querySelector('.places__list');
-    container.append(cardElement);
+    const galleryContainer = getGalleryContainer();
+    galleryContainer.append(cardElement);
   }
 
   initialCards.forEach((cardData) => {
