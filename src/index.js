@@ -1,29 +1,30 @@
-import './styles/index.css'; 
-// теперь картинки можно импортировать,
-// вебпак добавит в переменные правильные пути
-import jordanImage from './images/jordan.jpg';
-import jamesImage from './images/james.jpg';
-import bryantImage from './images/bryant.jpg';
-
-const whoIsTheGoat = [
+const projectMesto = [
   // меняем исходные пути на переменные
-  { name: 'Michael Jordan', link: jordanImage },
-  { name: 'Lebron James', link: jamesImage },
-  { name: 'Kobe Bryant', link: bryantImage },
+  { name: 'Jacques-Yves Cousteau', link: jacquesImage },
+  { name: 'castle', link: castleImage },
+  { name: 'sunset', link: sunsetImage },
+  { name: 'mountain', link: mountainImage },
+
+  { name: 'add-icon', link: addImage },
+  { name: 'Close', link: closeImage },
+  { name: 'delete-icon', link: deleteImage },
+  { name: 'edit-icon', link: editImage },
+  { name: 'like-active', link: likeImage },
+  { name: 'like-inactive', link: inactiveImage }
 ]; 
 
+const jacquesImage = new URL('./images/avatar.jpg', import.meta.url);
+const castleImage = new URL('./images/card_1.jpg', import.meta.url);
+const sunsetImage = new URL('./images/card_2.jpg', import.meta.url);
+const mountainImage = new URL('./images/card_3.jpg', import.meta.url);
 
-// ВТОРОЙ СПОСОБ РАБОТЫ С ИЗОБРАЖЕНИЯМИ(работает без запуска ВЕбпака)
-// // теперь картинки можно импортировать,
-// // вебпак добавит в переменные правильные пути
-// const jordanImage = new URL('./images/jordan.jpg', import.meta.url);
-// const jamesImage = new URL('./images/james.jpg', import.meta.url);
-// const bryantImage = new URL('./images/bryant.jpg', import.meta.url)
+const addImage = new URL('./images/add-icon.svg', import.meta.url);
+const closeImage = new URL('./images/close.svg', import.meta.url);
+const deleteImage = new URL('./images/delete-icon.svg', import.meta.url);
+const editImage = new URL('./images/edit-icon.svg', import.meta.url);
+const likeImage = new URL('./images/like-active.svg', import.meta.url);
+const inactiveImage = new URL('./images/like-inactive.svg', import.meta.url);
 
-// const whoIsTheGoat = [
-//   // меняем исходные пути на переменные
-//   { name: 'Michael Jordan', link: jordanImage },
-//   { name: 'Lebron James', link: jamesImage },
-//   { name: 'Kobe Bryant', link: bryantImage },
-// ]; 
 
+import './scripts/cards.js';
+import './pages/index.css';
