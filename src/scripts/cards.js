@@ -1,26 +1,39 @@
-export const initialCards = [
+export default [
     {
       name: "Архыз",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+      link: baikal,
     },
+
     {
       name: "Челябинская область",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+      link: cheliaba,
     },
+
     {
       name: "Иваново",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+      link: ivanovo,
     },
+
     {
       name: "Камчатка",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+      link: kamchatka,
     },
+
     {
       name: "Холмогорский район",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+      link: rayon,
     },
+
     {
       name: "Байкал",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+      link: baikal,
     }
 ];
+
+import baikal from '../images/baikal.jpg';
+import cheliaba from '../images/chelyabinsk-oblast.jpg';
+import ivanovo  from '../images/ivanovo.jpg';
+import kamchatka from '../images/kamchatka.jpg';
+import rayon from '../images/kholmogorsky-rayon.jpg';
+
+// массив карточек, отображаемых на странице
