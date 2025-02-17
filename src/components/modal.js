@@ -37,5 +37,24 @@ export function openPopup(editPopup) {
     }
   }
   // ---------------------------------------------------------Функция для открытия попапа Плюсик
+// Функция для открытия попапа
+// Функция для открытия попапа
+export function openPopupPlus(newCardPopup, popupForm) {
+  newCardPopup.style.display = 'flex';
+  document.addEventListener('keydown', (event) => handleEscClose(event, newCardPopup, popupForm)); // Добавляем обработчик Esc
+}
 
+// Функция для закрытия попапа
+export function closePopupPlus(newCardPopup, popupForm) {
+  newCardPopup.style.display = 'none';
+  popupForm.reset(); // Очистка формы
+  document.removeEventListener('keydown', (event) => handleEscClose(event, newCardPopup, popupForm)); // Убираем обработчик Esc
+}
+
+// Функция для обработки нажатия Esc
+export function handleEscClose(event, newCardPopup, popupForm) {
+  if (event.key === 'Escape') {
+    closePopupPlus(newCardPopup, popupForm);
+  }
+}
 // Функция открытия попапа

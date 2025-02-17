@@ -10,3 +10,8 @@ export function toggleLikeButtons() {
         });
     });
   }
+
+
+//   likeButton.addEventListener('click', () => {
+//     likeButton.classList.toggle('card__like-button_is-active');
+//   });
