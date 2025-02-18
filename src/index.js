@@ -28,18 +28,17 @@ const cardNameInput = addNewCard.querySelector('.popup__input_type_card-name');
 const cardLinkInput = addNewCard.querySelector('.popup__input_type_url');
 
 
-const imagePopup = document.querySelector('.popup_type_image');
-const imageModal = imagePopup.querySelector('.popup__image');
-const imageCaption = imagePopup.querySelector('.popup__caption');
-
+const imageModal = document.querySelector('.popup_type_image');
+const modalImage = imageModal.querySelector('.popup__image');
+const modalCaption = imageModal.querySelector('.popup__caption');
+ 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
+
+
 //---------------------------1. функция открытия модального окна изображения карточки
 function openImagePopup(data) {
-    const imageModal = document.querySelector('.popup_type_image');
-    const modalImage = imageModal.querySelector('.popup__image');
-    const modalCaption = imageModal.querySelector('.popup__caption');
-
+   
     modalImage.src = data.link;
     modalImage.alt = data.name;
     modalCaption.textContent = data.name;
@@ -52,17 +51,8 @@ initialCards.forEach((card) => {
     placesList.prepend(cardElement);
 });
 
-// ----------------------------2.Функция для открытия попапа с изображением
-function openPicture(data) {
-    imageModal.src = data.link;
-    imageModal.alt = data.name;
-    imageCaption.textContent = data.name;
-
-    openPopup(imagePopup);
-}
-
 //---------------------------- 3.Функция для заполнения полей формы текущими значениями
-function functionForm() {
+function fillProfileInputs() {
     if (nameInput && profileTitle) {
         nameInput.value = profileTitle.textContent;
     }
@@ -72,7 +62,7 @@ function functionForm() {
 }
 
 //------------------------------4. Обработчик отправки формы редактирования профиля
-function editFormProfile(event) {
+function handleProfileFormSubmit(event) {
     event.preventDefault(); 
 
     profileTitle.textContent = nameInput.value;
@@ -83,7 +73,7 @@ function editFormProfile(event) {
 
 //------------------------------5. Открытие попапа редактирования профиля с заполнением полей
 editProfileButton.addEventListener('click', () => {
-    functionForm();
+    fillProfileInputs();
     openPopup(popupTypeEdit);
 });
 
@@ -94,18 +84,22 @@ addButton.addEventListener('click', () => {
 
 
 // --------------------------------7.Обработчик отправки формы добавления карточки
-function editNewCard(event) {
+function handleCardFormSubmit(event) {
     event.preventDefault(); 
 
-    const newCardName = cardNameInput.value;
-    const newCardLink = cardLinkInput.value;
-    const newCardElement = createCard(newCard, deleteCard, cardLike, openPicture);
+    const newCardName = cardNameInput.value; // Получаем название карточки из input
+    const newCardLink = cardLinkInput.value; // Получаем ссылку на изображение из input
 
+    // Создаем объект новой карточки
     const newCard = {
         name: newCardName,
         link: newCardLink,
     };
 
+    // Создаем элемент карточки, передавая все необходимые функции
+    const newCardElement = createCard(newCard, deleteCard, cardLike);
+
+    // Добавляем новую карточку в начало списка
     placesList.prepend(newCardElement); 
 
     // Закрываем попап и очищаем форму
@@ -119,6 +113,6 @@ function editNewCard(event) {
 // --------------------------------------------------------------------
 ListenersPopup(popupTypeEdit);
 ListenersPopup(addNewCard);
-ListenersPopup(imagePopup);
-popupForm.addEventListener('submit', editNewCard);
-profileFormElement.addEventListener('submit', editFormProfile);
+ListenersPopup(imageModal);
+popupForm.addEventListener('submit', handleCardFormSubmit);
+profileFormElement.addEventListener('submit', handleProfileFormSubmit);

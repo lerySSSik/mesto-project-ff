@@ -2,8 +2,9 @@
 // и лайка карточки
 
 //-------------------------1. Функция создания карточки
+// Функция создания карточки
 export function createCard(cardData, deleteCard, likeCard, openPicture) {
-    const cardTemplate = document.querySelector('#card-template').content; // Шаблон карточки
+    const cardTemplate = document.querySelector('#card-template').content; 
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     const cardImage = cardElement.querySelector('.card__image');
     const cardTitle = cardElement.querySelector('.card__title');
@@ -16,20 +17,19 @@ export function createCard(cardData, deleteCard, likeCard, openPicture) {
 
     likeButton.addEventListener('click', () => likeCard(likeButton));
     deleteButton.addEventListener('click', () => deleteCard(cardElement));
-    cardImage.addEventListener('click', () => openPicture(cardData));
+    cardImage.addEventListener('click', () => openPicture(cardData)); 
 
     return cardElement;
 }
 
-//-------------------------2. Функция удаления карточки
-
+// Функция удаления карточки
 export function deleteCard(cardElement) {
     if (cardElement) {
-        cardElement.style.display = 'none'; 
+        cardElement.remove(); 
     }
 }
-// -------------------------3.Функция лайка карточки
 
+// Функция лайка карточки
 export function cardLike(likeButton) {
     if (!likeButton) {
         return;
