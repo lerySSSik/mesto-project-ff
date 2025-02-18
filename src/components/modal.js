@@ -3,58 +3,43 @@
 // функция-обработчик события нажатия Esc 
 // и функция-обработчик события клика по оверлею;
 
-// ---------------------------------------------------------Функция для открытия попапа карандаш
-
-// Функция открытия модального окна
-export function openPopup(editPopup) {
-    editPopup.style.display = 'flex'; // Открываем попап
-  
-    // Добавляем обработчики для закрытия на Esc и клик вне попапа
-    document.addEventListener('keydown', handleEscape.bind(null, editPopup));
-    document.addEventListener('mousedown', handleClickOutside.bind(null, editPopup));
+// ----------------------------1.Функция для открытия модального окна
+export function openPopup(popup) {
+  if (popup) {
+    popup.classList.add('popup_is-opened');
+    document.addEventListener('keydown', handleEscape);
   }
-  
-  // Функция закрытия модального окна
-  export function closePopup(editPopup) {
-    editPopup.style.display = 'none'; // Закрываем попап
-  
-    // Удаление обработчиков, чтобы они не срабатывали, когда попап закрыт
+}
+
+// ----------------------------2.Функция для закрытия модального окна
+export function closePopup(popup) {
+  if (popup) {
+    popup.classList.remove('popup_is-opened');
     document.removeEventListener('keydown', handleEscape);
-    document.removeEventListener('mousedown', handleClickOutside);
   }
-  
-  // Обработчик нажатия на Esc
-  export function handleEscape(editPopup, evt) {
-    if (evt.key === 'Escape') {
-      closePopup(editPopup);
-    }
-  }
-  
-  // Обработчик клика вне попапа
-  export function handleClickOutside(editPopup, evt) {
-    if (evt.target === editPopup) {
-      closePopup(editPopup);
-    }
-  }
-  // ---------------------------------------------------------Функция для открытия попапа Плюсик
-// Функция для открытия попапа
-// Функция для открытия попапа
-export function openPopupPlus(newCardPopup, popupForm) {
-  newCardPopup.style.display = 'flex';
-  document.addEventListener('keydown', (event) => handleEscClose(event, newCardPopup, popupForm)); // Добавляем обработчик Esc
 }
 
-// Функция для закрытия попапа
-export function closePopupPlus(newCardPopup, popupForm) {
-  newCardPopup.style.display = 'none';
-  popupForm.reset(); // Очистка формы
-  document.removeEventListener('keydown', (event) => handleEscClose(event, newCardPopup, popupForm)); // Убираем обработчик Esc
-}
+// ---------------------------3.функция-обработчик события нажатия Esc 
 
-// Функция для обработки нажатия Esc
-export function handleEscClose(event, newCardPopup, popupForm) {
-  if (event.key === 'Escape') {
-    closePopupPlus(newCardPopup, popupForm);
+function handleEscape(event) {
+  if (event.key === "Escape") {
+    const openPopups = document.querySelectorAll('.popup_is-opened');
+    openPopups.forEach(popup => closePopup(popup));
   }
 }
-// Функция открытия попапа
+
+
+// ---------------------------4.функция-обработчик события клика по оверлею
+export function ListenersPopup(popup) {
+  const closeButton = popup.querySelector('.popup__close');
+
+  if (closeButton) {
+    closeButton.addEventListener('click', () => closePopup(popup));
+  }
+
+  popup.addEventListener('click', (event) => {
+    if (event.target === popup) {
+      closePopup(popup);
+    }
+  });
+}
