@@ -9,7 +9,7 @@
 import './pages/index.css';
 import initialCards from './scripts/cards';
 import { createCard, deleteCard, cardLike } from './components/card.js';
-import { openPopup, closePopup, ListenersPopup } from './components/modal.js';
+import { openPopup, closePopup, listenerPopup } from './components/modal.js';
 
 //---------------------------------------- 1.поиск DOM-элементов на странице
 const placesList = document.querySelector('.places__list');
@@ -97,7 +97,7 @@ function handleCardFormSubmit(event) {
     };
 
     // Создаем элемент карточки, передавая все необходимые функции
-    const newCardElement = createCard(newCard, deleteCard, cardLike);
+    const newCardElement = createCard(newCard, deleteCard, cardLike, openImagePopup);
 
     // Добавляем новую карточку в начало списка
     placesList.prepend(newCardElement); 
@@ -111,8 +111,8 @@ function handleCardFormSubmit(event) {
     }
 }
 // --------------------------------------------------------------------
-ListenersPopup(popupTypeEdit);
-ListenersPopup(addNewCard);
-ListenersPopup(imageModal);
+listenerPopup(popupTypeEdit);
+listenerPopup(addNewCard);
+listenerPopup(imageModal);
 popupForm.addEventListener('submit', handleCardFormSubmit);
 profileFormElement.addEventListener('submit', handleProfileFormSubmit);

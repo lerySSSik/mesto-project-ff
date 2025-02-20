@@ -30,7 +30,7 @@ function handleEscape(event) {
 
 
 // ---------------------------4.функция-обработчик события клика по оверлею
-export function ListenersPopup(popup) {
+export function listenerPopup(popup) {
   const closeButton = popup.querySelector('.popup__close');
 
   if (closeButton) {
