@@ -19,9 +19,6 @@ const profileDescr = document.querySelector('.profile__description');
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const descrInput = popupTypeEdit.querySelector('.popup__input_type_description');
 
-const profileFormElement = popupTypeEdit.querySelector('.popup__form');
-
-
 const addNewCard = document.querySelector('.popup_type_new-card');
 const popupForm = addNewCard.querySelector('.popup__form');
 const cardNameInput = addNewCard.querySelector('.popup__input_type_card-name');
@@ -56,7 +53,6 @@ async function fetchData() {
     }
 }
 
-
 export const validationConfig = {
     formSelector: ".popup__form",
     inputSelector: ".popup__input",
@@ -67,12 +63,10 @@ export const validationConfig = {
   };
 
   const submitButtons = {
-    editProfile: profileFormElement.querySelector('.popup__button'),
-    addCard: editProfileForm.querySelector('.popup__button'),
+    editProfile: editProfileForm.querySelector('.popup__button'),
+    addCard: popupForm.querySelector('.popup__button'),
     avatar: avatarForm.querySelector('.popup__button')
 };
-
-
 
 
 //---------------------------1. функция открытия модального окна изображения карточки
@@ -99,13 +93,13 @@ editProfileButton.addEventListener('click', () => {
     nameInput.value = profileTitle.textContent;
     descrInput.value = profileDescr.textContent;
     openPopup(popupTypeEdit);
-    clearValidation(popupForm, validationConfig);
+    clearValidation(editProfileForm, validationConfig);
 });
 
 // ---------------------------------Обработчик открытия попапа добавления карточки
 addButton.addEventListener('click', () => {
     editProfileForm.reset();
-    clearValidation(editProfileForm, validationConfig);
+    clearValidation(popupForm, validationConfig);
     openPopup(addNewCard);
 });
 
@@ -201,15 +195,6 @@ function renderUserData(userData) {
     avatarImageElement.src = userData.avatar;
     currentUser = userData;
 }
-
-closeButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const popup = button.closest('.popup');
-      if (popup) {
-        closePopup(popup);
-      }
-    });
-  });
 
 // --------------------------------------------------------------------
 avatarForm.addEventListener('submit', handleAvatarFormSubmit);
