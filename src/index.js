@@ -8,7 +8,7 @@
 
 import './pages/index.css';
 import { createCard, deleteCard, cardLike } from './components/card.js';
-import { openPopup, closePopup, listenerPopup } from './components/modal.js';
+import { openPopup, closePopup, listenerPopup, addCloseButtonListeners } from './components/modal.js';
 import { enableValidation, clearValidation } from "./components/validation.js";
 import { fetchUserData, fetchCards, updateUserData, addCard, handleDeleteCard, updateAvatar } from './components/api.js';
 //---------------------------------------- 1.поиск DOM-элементов на странице
@@ -36,12 +36,13 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const avatarEditButtonElement = document.querySelector('.profile__image');
 
-let currentUser;
-
-// -----------------обновление аватара
 const avatarImageElement = document.querySelector('.profile__avatar');
 const avatarForm = avatarPopup.querySelector('.popup__form');
 const avatarInput = avatarForm.querySelector('.popup__input_type_avatar');
+
+let currentUser;
+
+// ------------------------------------------ПР7
 
 async function fetchData() {
     try {
@@ -197,13 +198,14 @@ function renderUserData(userData) {
 }
 
 // --------------------------------------------------------------------
-avatarForm.addEventListener('submit', handleAvatarFormSubmit);
-listenerPopup(popupTypeEdit);
-listenerPopup(addNewCard);
-listenerPopup(imageModal);
+closePopup();
+listenerPopup();
+addCloseButtonListeners();
+
 popupForm.addEventListener('submit', handleCardFormSubmit);
 editProfileForm.addEventListener('submit', handleProfileFormSubmit);
-openPopup();
-closePopup();
 document.addEventListener("DOMContentLoaded", () => enableValidation(validationConfig));
+avatarForm.addEventListener('submit', handleAvatarFormSubmit);
+popupForm.addEventListener('submit', handleCardFormSubmit);
+
 fetchData();

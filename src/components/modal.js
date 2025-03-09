@@ -28,18 +28,31 @@ function handleEscape(event) {
   }
 }
 
-
-// ---------------------------4.функция-обработчик события клика по оверлею
-export function listenerPopup(popup) {
-  const closeButton = popup.querySelector('.popup__close');
-
-  if (closeButton) {
-    closeButton.addEventListener('click', () => closePopup(popup));
+// ---------------------------4.Закрытие попапов по клику на оверлей
+function handleOverlayClick(evt) {
+  if (evt.target.classList.contains('popup')) {
+      closePopup(evt.target);
   }
+}
 
-  popup.addEventListener('click', (event) => {
-    if (event.target === popup) {
-      closePopup(popup);
-    }
+
+export function listenerPopup() {
+  const popups = document.querySelectorAll('.popup');
+  popups.forEach(popup => {
+      popup.addEventListener('mousedown', handleOverlayClick);
+  });
+}
+
+
+// ------------------------------Закрытие на крестик
+function handleCloseButtonClick(evt) {
+  const popup = evt.target.closest('.popup');
+  closePopup(popup);
+}
+
+export function addCloseButtonListeners() {
+  const closeButtons = document.querySelectorAll('.popup__close');
+  closeButtons.forEach(button => {
+      button.addEventListener('click', handleCloseButtonClick);
   });
 }
